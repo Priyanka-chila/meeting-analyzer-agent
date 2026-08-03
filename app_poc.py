@@ -10,7 +10,7 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 
 from langgraph.graph import StateGraph, START, END
 from google import genai
-from models import TopicOutput, SummaryOutput, ActionItem, ActionItemsOutput
+from app.models import TopicOutput, SummaryOutput, ActionItem, ActionItemsOutput, PrioritizedActionItem, PriorityOutput, FinalReport
 # ==================================================
 # 1. Load environment variables
 # ==================================================

@@ -58,15 +58,4 @@ class FinalReport(BaseModel):
 
     meeting_summary: str
 
-    key_topics: list[str]
-
-    action_items: list[PrioritizedActionItem]
-
-    overall_priority: Literal[
-        "High",
-        "Medium",
-        "Low",
-        "No Action Items"
-    ]
-
-    message: str | None = None
+    

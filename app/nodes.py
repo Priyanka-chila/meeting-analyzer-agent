@@ -1,7 +1,7 @@
 from app.models import FinalReport
+from app.state import MeetingState
 
-
-def check_action_items(state):
+def check_action_items(state: MeetingState) -> str  :
 
     if not state["action_items"]:
 
@@ -10,66 +10,19 @@ def check_action_items(state):
     return "has_actions"
 
 
-def final_output_node(state):
-
-    action_items = state[
-        "prioritized_action_items"
-    ]
-
-    if not action_items:
-
-        report = FinalReport(
-
-            meeting_summary=state["summary"],
-
-            key_topics=state["topics"],
-
-            action_items=[],
-
-            overall_priority="No Action Items",
-
-            message=(
-                "No action items identified "
-                "in this meeting."
-            )
-        )
-
-        return {
-            "final_report": report.model_dump()
-        }
+def final_output_node(state: MeetingState) -> dict:
+    
 
 
-    priorities = [
-        item["priority"]
-        for item in action_items
-    ]
-
-
-    if "High" in priorities:
-
-        overall_priority = "High"
-
-    elif "Medium" in priorities:
-
-        overall_priority = "Medium"
-
-    else:
-
-        overall_priority = "Low"
-
-
+    summary = state["summary"] if "summary" in state else "No summary available"
     report = FinalReport(
 
-        meeting_summary=state["summary"],
+        meeting_summary=summary,
 
-        key_topics=state["topics"],
-
-        action_items=action_items,
-
-        overall_priority=overall_priority
+        
     )
 
-
+    # report = state["final_report"]
     return {
         "final_report": report.model_dump()
     }

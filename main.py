@@ -55,7 +55,7 @@ initial_state = {
 
     "action_items": [],
 
-    "prioritized_action_items": [],
+    "prioritized_action_items": ["<priority>"],
 
     "final_report": {}
 }
